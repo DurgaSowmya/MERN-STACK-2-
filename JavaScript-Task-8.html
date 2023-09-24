@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript-Task-8</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0px;
+        }
+
+        .error {
+            color: red;
+            display: none;
+        }
+
+        #submit {
+            background-color: red;
+            color: white;
+            font-weight: bold;
+            margin: auto;
+            border-radius: 50px;
+            border-color: black;
+            width: 20%;
+            position: center;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            row-gap: 40px;
+            align-items: center;
+            background: linear-gradient(#faf9cb, #dc87b1);
+            height: 100vh;
+        }
+
+        h1 {
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Registration Form</h1>
+    <form action="" id="form">
+        <div class="container">
+            <form name="registration" class="registartion-form">
+                <table>
+                    <tr>
+                        <td><label for="fname">First Name:</label></td>
+                        <td><input type="text" name="fname" id="1" class="input_fields"></td>
+                        <td><label class="error" id="error_1">POOR</label></td>
+                    </tr>
+                    <tr>
+                        <td><label for="lname">Last Name:</label></td>
+                        <td><input type="text" name="lname" id="2" class="input_fields"></td>
+                        <td><label class="error" id="error_2">POOR</label></td>
+                    </tr>
+                    <tr>
+                        <td><label for="email">E Mail:</label></td>
+                        <td><input type="text" name="e-mail" id="3" class="input_fields"></td>
+                        <td><label class="error" id="error_3">POOR</label></td>
+                    </tr>
+                    <tr>
+                        <td><label for="password">Password: </label></td>
+                        <td><input type="password" name="password" id="4" class="input_fields"></td>
+                        <td><label class="error" id="error_4">POOR</label></td>
+                    </tr>
+                    <tr>
+                        <td><label for="repassword">Re-enter Password: </label></td>
+                        <td><input type="password" name="password" id="5" class="input_fields"></td>
+                        <td><label class="error" id="error_5">POOR OR MISMATCH</label></td>
+                    </tr>
+                    <tr>
+                        <td>Gender: </td>
+                        <td style="text-align:left"><input type="radio" id="male" name="gender" value="male">
+                            <label for="male">Male</label>
+                        </td>
+                    </tr>
+                    <td>
+                    <td style="text-align: left"><input type="radio" id="female" name="gender" value="female">
+                        <label for="female">Female</label>
+                    </td>
+                    </tr>
+                    <tr>
+                        <td><label for="age">Age: </label></td>
+                        <td><input type="text" name="age" id="6" class="input_fields"></td>
+                        <td> <label class="error" id="error_6">POOR</label> </td>
+                    </tr>
+                    <tr>
+                        <td><label for="phone">Phone number: </label></td>
+                        <td><input type="text" name="phone" id="7" class="input_fields"></td>
+                        <td><label class="error" id="error_7">POOR</label></td>
+                    </tr>
+                    <tr>
+                        <td> <label for="address">Address: </label></td>
+                        <td><textarea name="address" id="8" cols="30" rows="5" style="vertical-align: top" ;
+                                class="input_fields"></textarea></td>
+                        <td><label class="error" id="error_8">POOR</label></td>
+                    </tr>
+                    <tr>
+                        <td><label for="state">State: </label></td>
+                        <td><input type="text" name="state" id="9" class="input_fields"></td>
+                        <td> <label class="error" id="error_9">POOR</label></td>
+                    </tr>
+                    <tr>
+                        <td><label for="country">Country: </label></td>
+                        <td><select name="country" id="country">
+                                <option value="India">Choose your country</option>
+                                <option value="India">India</option>
+                                <option value="US">US</option>
+                                <option value="UK">UK</option>
+                                <option value="Russia">Russia</option>
+                            </select></td>
+                    </tr>
+                    <tr>
+                        <td><label for="">Languages Known: </label></td>
+                        <td><input type="checkbox" id="english" name="english" value="English" checked>
+                            <label for="english"> English</label>
+                            <input type="checkbox" id="kannada" name="kannada" value="Kannada">
+                            <label for="kannada"> Kannada</label>
+                            <input type="checkbox" id="hindi" name="hindi" value="Hindi">
+                            <label for="hindi"> Hindi</label>
+                            <input type="checkbox" id="telgu" name="telugu" value="Telugu">
+                            <label for="telugu"> Telugu</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" id="concent" name="concent" value="Concent">
+                            <label for="telugu"> Hereby I declare all the given details are true </label>
+                        </td>
+                    </tr>
+
+
+
+                </table>
+                <p style="text-align:right;">Log in into <a href="https://www.ethnus.com">Ethnus</a> website</p>
+                <center>
+                    <button type="submit" id="submit" onclick=handle(event)>Register</button>
+                </center>
+            </form>
+
+            <script>
+                let inputs = document.getElementsByClassName("input_fields");
+                console.log(inputs);
+                let errors = document.getElementsByClassName("error");
+                let pass = document.getElementById("4");
+                let repass = document.getElementById("5");
+                let concent = document.getElementById("concent");
+                let regexobj = {
+                    0: /^[a-zA-Z\s]+$/,
+                    1: /^[a-zA-Z\s]+$/,
+                    2: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                    3: /^[\s\S]*$/,
+                    4: /^[\s\S]*$/,
+                    5: /^(0?[1-9]|[1-9][0-9]|[1][0-1][0-9]|120)$/,
+                    6: /^(\+91[\-\s]?)?[0]?(91)?[6789]\d{9}$/,
+                    7: /^[\s\S]*$/,
+                    8: /^[\s\S]*$/,
+                };
+
+                function handle(event) {
+                    event.preventDefault();
+
+                    for (let i = 0; i < inputs.length; i++) {
+                        if (inputs[i].value == "") {
+                            let error = document.getElementById(`error_${inputs[i].id}`);
+                            error.style.display = "inline";
+                        } else {
+                            if (regexobj[i].test(inputs[i].value)) {
+                                console.log("executed");
+                                inputs[i].style.border = "";
+                                let error = document.getElementById(`error_${inputs[i].id}`);
+                                error.style.display = "none";
+                            } else {
+                                console.log("executed_2");
+                                let error = document.getElementById(`error_${inputs[i].id}`);
+                                error.style.display = "inline";
+                            }
+                        }
+                    }
+                    if (!concent.checked) {
+                        let error = document.getElementById("concent_error");
+                        error.style.display = "inline";
+                    } else {
+                        let error = document.getElementById("concent_error");
+                        error.style.display = "none";
+                    }
+
+                    if (pass.value != repass.value) {
+                        let error = document.getElementById("error_5");
+                        error.style.display = "inline";
+                    } else {
+                        let error = document.getElementById("error_5");
+                        error.style.display = "none";
+                    }
+                }
+            </script>
+
+</body>
+
+</html>

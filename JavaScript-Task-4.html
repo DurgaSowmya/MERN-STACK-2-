@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript-Task-4</title>
+</head>
+
+<body>
+    <button id="date" onclick=d_date()>show date</button>
+    <br>
+    <div id="date_d"></div>
+    <br>
+    <br>
+    <button id="time" onclick=d_time()>show time</button>
+    <br>
+    <div id="time_d"></div>
+    <script>
+        let time = document.getElementById("time_d");
+        let date = document.getElementById("date_d");
+
+        function d_time() {
+            let data = new Date();
+            time.innerText = data;
+        }
+
+        function d_date() {
+            let data = new Date();
+            date.innerText = `${data.getDate()}/${data.getMonth()}/${data.getFullYear()}`;
+        }
+    </script>
+</body>
+
+</html>

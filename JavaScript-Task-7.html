@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript-Task-7</title>
+    <style>
+        #train {
+            position: relative;
+            left: 10px;
+            transition: left 1s linear;
+        }
+    </style>
+</head>
+
+<body>
+    <div><img id="train" src="train.png" alt="Train" />
+        <br />
+    </div>
+
+    <button onclick="startMoving()">Start</button>
+    <button onclick="stopMoving()">Stop</button>
+    <script>
+        var trainElement = document.getElementById("train");
+        var intervalId;
+        var trainPosition = 10;
+        var maxPosition = 500;
+
+        function moveTrain() {
+            trainPosition += 10;
+            if (trainPosition <= maxPosition) {
+                trainElement.style.left = trainPosition + "px";
+            } else {
+                clearInterval(intervalId);
+            }
+        }
+
+        function startMoving() {
+            intervalId = setInterval(moveTrain, 100);
+        }
+
+        function stopMoving() {
+            clearInterval(intervalId);
+            trainPosition = 10;
+            trainElement.style.left = trainPosition + "px";
+        }
+    </script>
+</body>
+
+</html>

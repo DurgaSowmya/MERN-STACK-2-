@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript-Task-5</title>
+    <style>
+        .error {
+            color: red;
+            display: none;
+        }
+
+        #submit {
+            display: inline;
+            margin-left: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="">
+        <label for="name">Name: </label>
+        <input type="text" name="name" id="1" class="input_fields">
+        <label class="error" id="error_1">This field is required</label>
+        <br>
+        <br>
+        <label for="email">Email: </label>
+        <input type="text" name="email" id="2" class="input_fields">
+        <label class="error" id="error_2">A valid email address is required</label>
+        <br>
+        <br>
+        <label for="website">Website: </label>
+        <input type="text" name="website" id="3" class="input_fields">
+        <label class="error" id="error_3">A valid url is required</label>
+        <br>
+        <br>
+        <label for="message">Message: </label>
+        <textarea name="message" id="4" cols="30" rows="5" style="vertical-align: top;" class="input_fields"></textarea>
+        <label class="error" id="error_4">This field is required</label>
+        <br>
+        <br>
+        <button type="submit" id="submit" onclick=handle(event)>Submit</button>
+    </form>
+    <script>
+        let inputs = document.getElementsByClassName("input_fields");
+        console.log(inputs);
+        let errors = document.getElementsByClassName("error");
+
+        let regexobj = {
+            0: /^[a-zA-Z\s]+$/,
+            1: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+            2: /^(ftp|http|https):\/\/[^ "]+$/,
+            3: /^[\s\S]*$/,
+        };
+
+        function handle(event) {
+            event.preventDefault();
+
+            for (let i = 0; i < inputs.length; i++) {
+                if (inputs[i].value == "") {
+                    inputs[i].style.border = "2px solid red";
+                    let error = document.getElementById(`error_${inputs[i].id}`);
+                    error.style.display = "inline";
+                } else {
+                    if (regexobj[i].test(inputs[i].value)) {
+                        console.log("executed");
+                        inputs[i].style.border = "";
+                        let error = document.getElementById(`error_${inputs[i].id}`);
+                        error.style.display = "none";
+                    } else {
+                        console.log("executed_2");
+                        inputs[i].style.border = "2px solid red";
+                        let error = document.getElementById(`error_${inputs[i].id}`);
+                        error.style.display = "inline";
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
